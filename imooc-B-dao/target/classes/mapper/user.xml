@@ -96,4 +96,32 @@
                 </if>
     </select>
 
+<!--    Integer pageCountUserInfos(Map<String, Object> params);-->
+    <select id="pageCountUserInfos" resultType="java.lang.Integer" parameterType="java.util.Map">
+        select
+            count(1)
+        from
+            t_user_info
+        where
+            1=1
+            <if test="nick != null and nick != ''">
+                and nick like '%${nick}%'
+            </if>
+    </select>
+
+<!--    List<UserInfo> pageListUserInfos(Map<String, Object> params);-->
+    <select id="pageListUserInfos" resultType="com.imooc.bilibili.domain.UserInfo">
+        select
+            *
+        from
+            t_user_info
+        where
+            1=1
+            <if test="nick!=null and nick != ''">
+                and nick like '%${nick}%'
+            </if>
+        order by id desc
+        limit #{start}, #{limit}
+    </select>
+
 </mapper>
