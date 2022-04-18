@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.imooc.bilibili.dao.UserFollowingDao">
+
+<!--    Integer deleteUserFollowing(Long userId, Long followingId);-->
+    <delete id="deleteUserFollowing">
+        delete from t_user_following where userId = #{userId} and followingId = #{followingId}
+    </delete>
+
+<!--    Integer addUserFollowing(UserFollowing userFollowing);-->
+    <insert id="addUserFollowing">
+        insert into t_user_following(
+             userId,
+             followingId,
+             groupId,
+             createTime
+             )values(
+                #{userId},
+                #{followingId},
+                #{groupId},
+                #{createTime}
+        )
+    </insert>
+
+<!--    List<UserFollowing> getUserFollowings(@Param("userId") Long userId);-->
+    <select id="getUserFollowings">
+        select * from t_user_following where userId = #{userId}
+    </select>
+
+<!--    List<UserFollowing> getUserFans(Long userId);-->
+    <select id="getUserFans" resultType="com.imooc.bilibili.domain.UserFollowing">
+        select * from t_user_following where followingId = #{followingId}
+    </select>
+</mapper>

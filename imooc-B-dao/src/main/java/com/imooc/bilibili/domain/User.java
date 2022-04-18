@@ -11,8 +11,18 @@ public class User {
     private String password;
     private String salt;
 
+    private UserInfo userInfo;
+
     private Date createTime;
     private Date updateTime;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
 
     public Long getId() {
         return id;
